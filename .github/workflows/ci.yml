@@ -9,13 +9,17 @@ on:
       - main
 env:
   MY_HOST: '127.0.0.1'
+  COMPANY_NAME: 'ICC'
 jobs:
   build-job:
     runs-on: ubuntu-latest
     env:
       FULLNAME: 'Mary Doe'
     steps:
-      - run: echo "My host $MY_HOST ant $FULLNAME"
+      - run: echo ${{vars.COMPANY_NAME}}
+      - run: echo ${{env.COMPANY_NAME}}
+      - run: echo ${{secrets.MYSQLPASSWORD}}
+      - run: echo "My host $MY_HOST and $FULLNAME and $COMPANY_NAME"
       - run: echo "Hello ${{github.actor}} $FULLNAME"
   test-job: 
     runs-on: ubuntu-latest
